@@ -598,6 +598,81 @@
   mask-image: linear-gradient(to bottom, transparent, #000 55%);
 }
 
+/* Contact CTA: lifts out of the page with a warm halo when hovered or focused. */
+.contact-cta {
+  position: relative;
+  isolation: isolate;
+  box-shadow: 0 0 0 1px transparent;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease,
+    box-shadow 0.4s ease,
+    color 0.4s ease;
+}
+/* Halo: a soft ring of highlight colour that blooms outward from behind the pill. */
+.contact-cta::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  z-index: -1;
+  border-radius: 9999px;
+  background: radial-gradient(
+    60% 120% at 50% 50%,
+    color-mix(in oklab, var(--highlight) 55%, transparent),
+    color-mix(in oklab, var(--highlight) 18%, transparent) 55%,
+    transparent 78%
+  );
+  opacity: 0;
+  transform: scale(0.82);
+  filter: blur(6px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.contact-cta:hover,
+.contact-cta:focus-visible {
+  transform: translateY(-4px) scale(1.04);
+  background-color: color-mix(in oklab, var(--primary) 82%, var(--highlight));
+  color: var(--highlight-foreground);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--highlight) 70%, transparent),
+    0 14px 34px -14px color-mix(in oklab, var(--highlight) 80%, transparent);
+}
+.contact-cta:hover::before,
+.contact-cta:focus-visible::before {
+  opacity: 1;
+  transform: scale(1.12);
+}
+.contact-cta:active {
+  transform: translateY(-1px) scale(1.01);
+}
+.contact-cta .cta-icon {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.contact-cta:hover .cta-icon,
+.contact-cta:focus-visible .cta-icon {
+  transform: translateX(2px) rotate(-10deg) scale(1.12);
+}
+@media (prefers-reduced-motion: reduce) {
+  .contact-cta,
+  .contact-cta::before,
+  .contact-cta .cta-icon {
+    transition: none;
+  }
+  .contact-cta:hover,
+  .contact-cta:focus-visible {
+    transform: none;
+  }
+  .contact-cta:hover::before,
+  .contact-cta:focus-visible::before {
+    transform: scale(1);
+  }
+  .contact-cta:hover .cta-icon,
+  .contact-cta:focus-visible .cta-icon {
+    transform: none;
+  }
+}
+
 .hx-stage {
   position: absolute;
   left: 50%;

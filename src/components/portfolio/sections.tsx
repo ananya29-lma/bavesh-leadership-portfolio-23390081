@@ -444,9 +444,9 @@ export function Contact() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
             href="mailto:hello@akshay.dev"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-xs font-semibold tracking-[0.2em] uppercase text-primary-foreground transition-transform hover:scale-[1.03]"
+            className="contact-cta inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-xs font-semibold tracking-[0.2em] uppercase text-primary-foreground"
           >
-            <Mail className="size-4" />CONNECT WITH ME
+            <Mail className="cta-icon size-4" />CONNECT WITH ME
           </a>
         </div>
       </div>
